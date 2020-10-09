@@ -26,7 +26,7 @@ class Category extends React.Component {
   
   render() {
 
-    const {selectedCategory,isLoading,hasError,error,articles,onGet} = this.props;
+    const {selectedCategory,isLoading,hasError,error,articles} = this.props;
    
     const articleList = articles.map(article => {
       return (
