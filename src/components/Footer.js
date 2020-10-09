@@ -1,12 +1,15 @@
 import React from 'react';
 
-const Footer = () => {
+class Footer extends React.Component {
 
-    return (
-        <footer className="footer">
-           <h4>Práctico Nro 2 - News Feed</h4>
-        </footer>
-    )
+    render()
+    {
+        return (
+            <footer className="footer">
+               <h4>Práctico Nro 2 - News Feed</h4>
+            </footer>
+        )
+    }
 }
 
 export default Footer;

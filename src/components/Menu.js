@@ -4,30 +4,32 @@ import { Link } from "react-router-dom";
 //Custom components
 import { categories } from "../config/data";
 
-const Menu = () => {
+class Menu extends React.Component {
 
-    const categoryList = categories.map((category) => {
-        const id = category.includeId ? `/${category.name}` : '';
-    
-        return (
+    render() {
+        const categoryList = categories.map((category) => {
+            const id = category.includeId ? `/${category.name}` : '';
         
-            <Link key={category.id} to={`${category.linkTo}${id}`}>
-                    <li>
-                        {category.description}
-                    </li>
-            </Link>
+            return (
+            
+                <Link key={category.id} to={`${category.linkTo}${id}`}>
+                        <li>
+                            {category.description}
+                        </li>
+                </Link>
+            );
+        });
+        
+        return (
+    
+            <navbar>
+                <ul className="menu">
+                    {categoryList}
+                </ul>
+            </navbar>
+        
         );
-    });
-    
-    return (
-
-        <navbar>
-            <ul className="menu">
-                {categoryList}
-            </ul>
-        </navbar>
-    
-    );
+    }
 
 };
 

@@ -8,20 +8,23 @@ export const DOLLAR_SIGN = "fas fa-dollar-sign";
 export const CALENDAR_CHECK = "far fa-calendar-check";
 export const CALENDAR_TIMES = "far fa-calendar-times";
 
-export const CustomIcon = (props) => {
-  let type = props.type;
+class CustomIcon extends React.Component {
 
-  return (
-    <i
-      className={type}
-      style={{
-        fontSize: props.size,
-        color: props.color,
-        background: props.backgroundColor,
-        padding: "5px"
-      }}
-    />
-  );
+  render() {
+    const {type,size,color,backgroundColor} = this.props;
+  
+    return (
+      <i
+        className={type}
+        style={{
+          fontSize: size,
+          color: color,
+          background: backgroundColor,
+          padding: "5px"
+        }}
+      />
+    );
+  }
 };
 
 export default CustomIcon;

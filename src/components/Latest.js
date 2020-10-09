@@ -3,27 +3,29 @@ import React from "react";
 //Custom components
 import * as endpoints from "../config/endpoints";
 
-const Latest = (props) => {
+class Latest extends React.Component {
 
-  const dateParam = props.match.params.date;
-
-  return (
+  render() {
+    const dateParam = this.props.match.params.date;
+  
+    return (
+            
+      <div>
+          <h3>
+              Útimo momento {dateParam}
+          </h3>
           
-    <div>
-        <h3>
-            Útimo momento {dateParam}
-        </h3>
-        
-        <label>
-            {`Seleccione la fecha   `}
-            <input type="date"/>
-            <div>
-              URL => {`${endpoints.BASE_URL}${endpoints.ENDPOINT_LATEST}`}
-            </div>
-        </label>
-        
-    </div>
-  );
+          <label>
+              {`Seleccione la fecha   `}
+              <input type="date"/>
+              <div>
+                URL => {`${endpoints.BASE_URL}${endpoints.ENDPOINT_LATEST}`}
+              </div>
+          </label>
+          
+      </div>
+    );
+  }
 };
 
 export default Latest;
