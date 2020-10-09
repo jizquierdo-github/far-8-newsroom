@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 
 // utilidad para ver las acciones realizadas
 const logger = (store) => (next) => (action) => {
+  
   let result;
   
   console.groupCollapsed("despachando", action.type);
