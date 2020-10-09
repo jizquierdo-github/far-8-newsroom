@@ -1,16 +1,32 @@
 import React from "react";
 
 //Custom components
-import { categories } from "../config/data";
+
 
 class Category extends React.Component {
+
+  refreshArticles() {
+    const {selectedCategory,onGet} = this.props;
+  
+    if (this.props.selectedCategory!==undefined) {
+      onGet(selectedCategory.id);
+    }
+  }
+
+  componentDidMount() {
+    this.refreshArticles();
+  }
+
+  componentDidUpdate(prevProps) {
+    
+    if (this.props.selectedCategory !== prevProps.selectedCategory) {
+      this.refreshArticles();
+    }
+  }
   
   render() {
 
-    const categoryNameParam = this.props.match.params.categoryName;
-    const selectedCategory = categories.find(category => category.name === categoryNameParam); //SPIDER : Cambiarlo una vez que este redux
-  
-    const {isLoading,hasError,error,articles,onGet} = this.props;
+    const {selectedCategory,isLoading,hasError,error,articles,onGet} = this.props;
    
     const articleList = articles.map(article => {
       return (
@@ -20,6 +36,14 @@ class Category extends React.Component {
         </li>
       )
     })
+
+    if (selectedCategory===undefined) {
+      return (
+        <div>
+           No se encontro la categoría de noticias especificada => {this.props.match.params.categoryName}
+        </div>
+      ) 
+    }
   
     return (
             
@@ -28,8 +52,8 @@ class Category extends React.Component {
               Categoria {selectedCategory.description} - {selectedCategory.id}
           </h3>
           <div>
-            <button onClick={()=>onGet(selectedCategory.id)}>
-               Buscar
+            <button onClick={()=>this.refreshArticles()}>
+               Refresh
             </button>          
           </div>
           <div>
