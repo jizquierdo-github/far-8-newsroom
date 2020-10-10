@@ -13,9 +13,11 @@ const mapStateToProps = (state,ownProps) => ({
   selectedCategory: categories.find(category => category.name === ownProps.match.params.categoryName)
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onGet: (categoryId) => dispatch(getArticlesByCategory(categoryId)),
-})
+const mapDispatchToProps = (dispatch, ownProps) => (
+  {
+    onGet: (categoryId) => dispatch(getArticlesByCategory(categoryId))
+  }
+)
 
 export default connect(
   mapStateToProps,

@@ -73,11 +73,38 @@ export const getArticlesByCategory = (categoryId) => {
   }
 }
 
-export const getLatestArticles = () => (
-    {
-      type: actionTypes.ACTION_TYPE_GET_LATEST_ARTICLES //SPIDER: completar
-    }
-)
+export const getLatestArticles = (newsDate) => {
+
+  return dispatch => {
+
+    const url = `${endpoints.BASE_URL}${endpoints.ENDPOINT_LATEST}${newsDate}`;
+    console.log("Url latest: [" + url + "]")
+
+    dispatch(clearArticles())
+
+    dispatch(loadingError(false))
+
+    dispatch(loadingInProgress(true))
+
+    fetch(url)
+      .then((response) => {
+
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+
+        dispatch(loadingInProgress(false))
+
+        return response
+      })
+      .then((response) =>  response.json())
+      .then((articles) => {
+        console.log(articles)
+        return  dispatch(loadingSuccess(articles))
+      })
+      .catch(error => dispatch(loadingError(true,error)))
+  }
+}
 
 export const getTrendingArticles = () => (
     {
