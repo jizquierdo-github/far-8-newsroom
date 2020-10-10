@@ -60,13 +60,12 @@ export const getArticlesByCategory = (categoryId) => {
           throw Error(response.statusText)
         }
 
-        dispatch(loadingInProgress(false))
-
         return response
       })
       .then((response) =>  response.json())
       .then((articles) => {
         console.log(articles)
+        dispatch(loadingInProgress(false))
         return  dispatch(loadingSuccess(articles))
       })
       .catch(error => dispatch(loadingError(true,error)))
@@ -92,14 +91,13 @@ export const getLatestArticles = (newsDate) => {
         if (!response.ok) {
           throw Error(response.statusText)
         }
-
-        dispatch(loadingInProgress(false))
-
+       
         return response
       })
       .then((response) =>  response.json())
       .then((articles) => {
         console.log(articles)
+        dispatch(loadingInProgress(false))
         return  dispatch(loadingSuccess(articles))
       })
       .catch(error => dispatch(loadingError(true,error)))

@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import Latest from '../components/Latest'
 import {getLatestArticles} from '../actions/actions'
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state,ownProps) => ({
   articles:  state.articles,
   hasError:  state.loadingError.hasError,
   error:     state.loadingError.error,
   isLoading: state.loadingInProgress,
-  selectedDate: "2020-10-08"
+  selectedDate: ownProps.match.params.selectedDate
 })
 
 const mapDispatchToProps = (dispatch) => (

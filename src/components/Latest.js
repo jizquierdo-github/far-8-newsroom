@@ -5,11 +5,21 @@ import * as endpoints from "../config/endpoints";
 
 class Latest extends React.Component {
 
-  refreshArticles() {
+  state = {
+    customDate : ""
+  }
+
+  handleOnChange=(e)=> {
+    this.setState({customDate: e.target.value})
+  }
+
+  refreshArticles(date) {
     const {onGet,selectedDate} = this.props;
   
-    if (this.props.selectedDate!==undefined) {
-      onGet(selectedDate);
+    const newDate = date === undefined ? selectedDate : date 
+
+    if (newDate!==undefined) {
+      onGet(newDate);
     }
   }
 
@@ -25,8 +35,7 @@ class Latest extends React.Component {
   }  
 
   render() {
-    const dateParam = this.props.match.params.date;
-    const {isLoading,hasError,error,articles} = this.props;
+    const {isLoading,hasError,error,selectedDate,articles} = this.props;
   
     const articleList = articles.map(article => {
       return (
@@ -41,11 +50,12 @@ class Latest extends React.Component {
             
       <div>
           <h3>
-              Útimo momento {dateParam}
+              Útimo momento {selectedDate}
           </h3>
           
           <div>
-            <button onClick={()=>this.refreshArticles()}>
+            <input value={this.state.customDate} onChange={this.handleOnChange}/>
+            <button onClick={()=>this.refreshArticles(this.state.customDate)}>
                Refresh
             </button>          
           </div>
