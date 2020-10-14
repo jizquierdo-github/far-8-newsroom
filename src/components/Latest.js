@@ -1,22 +1,18 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 //Custom components
-import * as endpoints from "../config/endpoints";
 
 class Latest extends React.Component {
 
-  state = {
-    customDate : ""
-  }
-
   handleOnChange=(e)=> {
-    this.setState({customDate: e.target.value})
+    this.props.setDate(e.target.value);
   }
 
-  refreshArticles(date) {
-    const {onGet,selectedDate} = this.props;
-  
-    const newDate = date === undefined ? selectedDate : date 
+  refreshArticles() {
+    const {onGet,paramDate,articleDate} = this.props;
+      
+    const newDate = paramDate === undefined ? articleDate : paramDate 
 
     if (newDate!==undefined) {
       onGet(newDate);
@@ -29,13 +25,13 @@ class Latest extends React.Component {
 
   componentDidUpdate(prevProps) {
     
-    if (this.props.selectedDate !== prevProps.selectedDate) {
+    if (this.props.paramDate !== prevProps.paramDate) {
       this.refreshArticles();
     }
   }  
 
   render() {
-    const {isLoading,hasError,error,selectedDate,articles} = this.props;
+    const {isLoading,hasError,error,paramDate,articleDate,articles} = this.props;
   
     const articleList = articles.map(article => {
       return (
@@ -50,14 +46,16 @@ class Latest extends React.Component {
             
       <div>
           <h3>
-              Útimo momento {selectedDate}
+              Útimo momento ParamDate: [{paramDate}] - articleDate:[{articleDate}]
           </h3>
           
           <div>
-            <input value={this.state.customDate} onChange={this.handleOnChange}/>
-            <button onClick={()=>this.refreshArticles(this.state.customDate)}>
-               Refresh
-            </button>          
+            <input value={articleDate} onChange={this.handleOnChange}/>
+            <Link to={`/${articleDate}`}>
+              <button>
+                Refresh
+              </button>        
+            </Link>
           </div>
           <div>
             {hasError ? `Error buscando noticias: ${error}` : ""}

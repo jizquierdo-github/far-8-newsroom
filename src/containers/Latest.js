@@ -2,18 +2,20 @@ import { connect } from 'react-redux'
 
 //Custom components
 import Latest from '../components/Latest'
-import {getLatestArticles} from '../actions/actions'
+import {setArticleDate,getLatestArticles} from '../actions/actions'
 
 const mapStateToProps = (state,ownProps) => ({
+  paramDate: ownProps.match.params.paramDate,
+  articleDate : state.articleDate,
   articles:  state.articles,
   hasError:  state.loadingError.hasError,
   error:     state.loadingError.error,
-  isLoading: state.loadingInProgress,
-  selectedDate: ownProps.match.params.selectedDate
+  isLoading: state.loadingInProgress
 })
 
 const mapDispatchToProps = (dispatch) => (
   {
+    setDate : (newsDate) => dispatch(setArticleDate(newsDate)),
     onGet: (newsDate) => dispatch(getLatestArticles(newsDate))
   }
 )
