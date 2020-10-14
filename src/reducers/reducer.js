@@ -32,6 +32,18 @@ const loadingInProgress = (state = false, action) => {
   }
 }
 
+//Date Reducer
+const articleDate = (state = "2020-10-20", action) => {
+
+  switch (action.type) {
+    case actionTypes.ACTION_TYPE_SET_ARTICLE_DATE:
+      return action.articleDate;
+
+    default:
+      return state;
+  }
+}
+
 //Articles Reducer
 const articles = (state = [], action) => {
 
@@ -64,5 +76,6 @@ const articles = (state = [], action) => {
 export default combineReducers({
   loadingError,
   loadingInProgress,
+  articleDate,
   articles
 })

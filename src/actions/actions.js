@@ -27,6 +27,13 @@ export const loadingSuccess = (articles) => (
     }
 ) 
 
+export const setArticleDate = date => (
+  {
+    type: actionTypes.ACTION_TYPE_SET_ARTICLE_DATE,
+    articleDate : date
+  }
+)
+
 //Specific actions
 export const clearArticles = () => (
   {
@@ -84,6 +91,8 @@ export const getLatestArticles = (newsDate) => {
     dispatch(loadingError(false))
 
     dispatch(loadingInProgress(true))
+
+    dispatch(setArticleDate(newsDate))
 
     fetch(url)
       .then((response) => {
