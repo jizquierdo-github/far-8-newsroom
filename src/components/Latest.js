@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom"
 
 //Custom components
+import { getTodayAsYYYYMMDD } from "../utils/dateFunctions";
 
 class Latest extends React.Component {
 
@@ -10,10 +11,10 @@ class Latest extends React.Component {
   }
 
   refreshArticles() {
-    const {onGet,paramDate,articleDate} = this.props;
+    const {onGet,paramDate} = this.props;
       
-    const newDate = paramDate === undefined ? articleDate : paramDate 
-
+    const newDate =  paramDate === undefined ? getTodayAsYYYYMMDD() : paramDate;
+   
     if (newDate!==undefined) {
       onGet(newDate);
     }
@@ -23,8 +24,7 @@ class Latest extends React.Component {
     this.refreshArticles();
   }
 
-  componentDidUpdate(prevProps) {
-    
+  componentDidUpdate(prevProps) {    
     if (this.props.paramDate !== prevProps.paramDate) {
       this.refreshArticles();
     }
@@ -50,7 +50,10 @@ class Latest extends React.Component {
           </h3>
           
           <div>
-            <input value={articleDate} onChange={this.handleOnChange}/>
+            <input
+              value={articleDate} onChange={this.handleOnChange}
+              type="date"
+            />            
             <Link to={`/${articleDate}`}>
               <button>
                 Refresh

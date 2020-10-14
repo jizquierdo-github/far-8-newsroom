@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { getTodayAsYYYYMMDD } from "../utils/dateFunctions";
 
 //Custom section
 import * as actionTypes from "../actions/actionTypes"
@@ -7,6 +8,8 @@ const INITIAL_LOADING_ERROR = {
   hasError: false,
   error: ""
 }
+
+const INITIAL_DATE = getTodayAsYYYYMMDD();
 
 //LoadingError Reducer
 const loadingError = (state = INITIAL_LOADING_ERROR, action) => {
@@ -33,7 +36,7 @@ const loadingInProgress = (state = false, action) => {
 }
 
 //Date Reducer
-const articleDate = (state = "2020-10-20", action) => {
+const articleDate = (state = INITIAL_DATE, action) => {
 
   switch (action.type) {
     case actionTypes.ACTION_TYPE_SET_ARTICLE_DATE:
