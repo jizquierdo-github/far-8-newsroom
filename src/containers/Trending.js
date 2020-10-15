@@ -7,9 +7,9 @@ import {setArticleDate,setArticleQuantity,getTrendingArticles} from '../actions/
 const mapStateToProps = (state,ownProps) => ({
   paramDate: ownProps.match.params.paramDate,
   paramQuantity: ownProps.match.params.paramQty,
-  articleDate : state.articleDate,
-  articleQuantity : state.articleQuantity,
-  articles:  state.articles,
+  articleDate: state.articleData.date,
+  articleQuantity: state.articleData.quantity,
+  articles:  state.articleData.articles,
   hasError:  state.loadingError.hasError,
   error:     state.loadingError.error,
   isLoading: state.loadingInProgress

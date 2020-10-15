@@ -10,8 +10,13 @@ const INITIAL_LOADING_ERROR = {
 }
 
 const INITIAL_DATE = getTodayAsYYYYMMDD();
-
 const INITIAL_QUANTITY = 5;
+
+const INITIAL_ARTICLE_DATA = {
+  articles: [],
+  date: INITIAL_DATE,
+  quantity: INITIAL_QUANTITY
+};
 
 //LoadingError Reducer
 const loadingError = (state = INITIAL_LOADING_ERROR, action) => {
@@ -37,40 +42,21 @@ const loadingInProgress = (state = false, action) => {
   }
 }
 
-//Date Reducer
-const articleDate = (state = INITIAL_DATE, action) => {
+//Articles reducer
+const articleData =  (state = INITIAL_ARTICLE_DATA, action) => {
 
   switch (action.type) {
     case actionTypes.ACTION_TYPE_SET_ARTICLE_DATE:
-      return action.articleDate;
+      return {...state,date: action.articleDate}
 
-    default:
-      return state;
-  }
-}
-
-//Quantity Reducer
-const articleQuantity = (state = INITIAL_QUANTITY, action) => {
-
-  switch (action.type) {
     case actionTypes.ACTION_TYPE_SET_ARTICLE_QUANTITY:
-      return action.articleQuantity;
+      return {...state,quantity: action.articleQuantity}
 
-    default:
-      return state;
-  }
-}
-
-//Articles Reducer
-const articles = (state = [], action) => {
-
-  switch (action.type) {
-      
     case actionTypes.ACTION_TYPE_CLEAR_ARTICLES:
-      return [];
+      return {...state,articles: []}
 
     case actionTypes.ACTION_TYPE_LOADING_SUCCESS:
-      return action.articles;
+      return {...state,articles: action.articles}
 
     case actionTypes.ACTION_TYPE_SEARCH_ARTICLES:
       return state;
@@ -83,17 +69,17 @@ const articles = (state = [], action) => {
         
     case actionTypes.ACTION_TYPE_GET_TRENDING_ARTICLES:
         return state;
-
+        
     default:
-      return state;
-  }
+      return {...state}
+  }  
+  
 }
+
 
 //Reducer combination
 export default combineReducers({
   loadingError,
   loadingInProgress,
-  articleDate,
-  articleQuantity,
-  articles
+  articleData
 })

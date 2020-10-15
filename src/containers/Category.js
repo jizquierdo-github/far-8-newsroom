@@ -6,7 +6,7 @@ import {getArticlesByCategory} from '../actions/actions'
 import Category from '../components/Category'
 
 const mapStateToProps = (state,ownProps) => ({
-  articles:  state.articles,
+  articles:  state.articleData.articles,
   hasError:  state.loadingError.hasError,
   error:     state.loadingError.error,
   isLoading: state.loadingInProgress,

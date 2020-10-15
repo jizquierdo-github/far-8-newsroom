@@ -6,8 +6,8 @@ import {setArticleDate,getLatestArticles} from '../actions/actions'
 
 const mapStateToProps = (state,ownProps) => ({
   paramDate: ownProps.match.params.paramDate,
-  articleDate : state.articleDate,
-  articles:  state.articles,
+  articleDate: state.articleData.date,
+  articles:  state.articleData.articles,
   hasError:  state.loadingError.hasError,
   error:     state.loadingError.error,
   isLoading: state.loadingInProgress
