@@ -1,10 +1,10 @@
 export const categories = [
   { 
     id: 0, 
-    name: "ahora", 
+    name: "hoy", 
     description: "Último momento",
-    linkTo: "/",
-    includeId: false
+    linkTo: "/ultimas",
+    includeId: true
   },
   { 
     id: 100, 

@@ -1,27 +1,77 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 //Custom components
-import * as endpoints from "../config/endpoints";
+import { getTodayAsYYYYMMDD } from "../utils/dateFunctions";
 
 class Trending extends React.Component {
 
+  handleOnChange=(e)=> {
+    this.props.setDate(e.target.value);
+  }
+
+  refreshArticles() {
+    const {onGet,paramDate} = this.props;      
+    const newDate =  (paramDate === undefined || paramDate.toUpperCase()==="HOY") ? getTodayAsYYYYMMDD() : paramDate;
+   
+    if (newDate!==undefined) {
+      onGet(newDate);
+    }
+  }
+
+  componentDidMount() {
+    this.refreshArticles();
+  }
+
+  componentDidUpdate(prevProps) {    
+    if (this.props.paramDate !== prevProps.paramDate) {
+      this.refreshArticles();
+    }
+  }
+
   render() {
-    const dateParam = this.props.match.params.date;
+    const {isLoading,hasError,error,paramDate,articleDate,articles} = this.props;
   
+    const articleList = articles.map(article => {
+      return (
+        <li key={article.news_id}>
+            <div>Category: {article.category}</div>
+            <div>Title: {article.title}</div>
+        </li>
+      )
+    })
+    
     return (
             
       <div>
           <h3>
-              Tendencias {dateParam}
+              Tendencias: [{paramDate}] - articleDate:[{articleDate}]
           </h3>
   
-          <label>
-              {`Seleccione la fecha   `}
-              <input type="date"/>
-          </label>
           <div>
-                URL => {`${endpoints.BASE_URL}${endpoints.ENDPOINT_TRENDING}`}
+            <input
+              value={articleDate} onChange={this.handleOnChange}
+              type="date"
+            />           
+            <Link to={`/tendencias/${articleDate}`}>
+              <button>
+                Refresh
+              </button>        
+            </Link>
           </div>
+          <div>
+            {hasError ? `Error buscando noticias: ${error}` : ""}
+          </div>
+          <div>
+              {isLoading? "Loading" : ""}
+          </div>
+          <div>
+            {articles.length}
+            <ul>
+              {articleList}
+            </ul>
+          </div>
+          
       </div>
     );
   }

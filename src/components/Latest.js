@@ -11,12 +11,11 @@ class Latest extends React.Component {
   }
 
   refreshArticles() {
-    const {onGet,paramDate} = this.props;
-      
-    const newDate =  paramDate === undefined ? getTodayAsYYYYMMDD() : paramDate;
+    const {onGet,paramDate} = this.props;      
+    const newDate =  (paramDate === undefined || paramDate.toUpperCase()==="HOY") ? getTodayAsYYYYMMDD() : paramDate;
    
     if (newDate!==undefined) {
-      onGet(newDate);
+       onGet(newDate);
     }
   }
 
@@ -54,7 +53,7 @@ class Latest extends React.Component {
               value={articleDate} onChange={this.handleOnChange}
               type="date"
             />            
-            <Link to={`/${articleDate}`}>
+            <Link to={`/ultimas/${articleDate}`}>
               <button>
                 Refresh
               </button>        

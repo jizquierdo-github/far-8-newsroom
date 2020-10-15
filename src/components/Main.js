@@ -13,10 +13,10 @@ class Main extends React.Component {
         
         return (
             <main className="main">
-                <Route exact path="/"                 component={Latest} />
-                <Route exact path="/:paramDate"       component={Latest} />
-                <Route path="/tendencias/:paramDate"  component={Trending} />
-                <Route path="/noticias/:categoryName" component={Category} />
+                <Route exact path="/"                   component={Latest} />
+                <Route exact path="/ultimas/:paramDate" component={Latest} />
+                <Route path="/tendencias/:paramDate"    component={Trending} />
+                <Route path="/noticias/:categoryName"   component={Category} />
             </main>
         )
     }
