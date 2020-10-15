@@ -34,6 +34,14 @@ export const setArticleDate = date => (
   }
 )
 
+export const setArticleQuantity = quantity =>  (
+  {
+    type: actionTypes.ACTION_TYPE_SET_ARTICLE_QUANTITY,
+    articleQuantity : quantity
+  }
+)
+
+
 //Specific actions
 export const clearArticles = () => (
   {
@@ -113,11 +121,40 @@ export const getLatestArticles = (newsDate) => {
   }
 }
 
-export const getTrendingArticles = () => (
-    {
-      type: actionTypes.ACTION_TYPE_GET_TRENDING_ARTICLES //SPIDER: completar
-    }
-)
+export const getTrendingArticles =  (newsDate,newsQuantity) => {
+
+  return dispatch => {
+
+    const url = `${endpoints.BASE_URL}${endpoints.ENDPOINT_TRENDING}${newsDate}/${newsQuantity}`;
+    console.log("Url trending: [" + url + "]")
+   
+    dispatch(clearArticles())
+
+    dispatch(loadingError(false))
+
+    dispatch(loadingInProgress(true))
+
+    dispatch(setArticleDate(newsDate))
+    dispatch(setArticleQuantity(newsQuantity))
+   
+    fetch(url)
+      .then((response) => {
+        
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+       
+        return response
+      })
+      .then((response) =>  response.json())
+      .then((articles) => {
+        console.log(articles)
+        dispatch(loadingInProgress(false))
+        return  dispatch(loadingSuccess(articles))
+      })
+      .catch(error => dispatch(loadingError(true,error)))
+  }
+}
 
 
 

@@ -1,8 +1,9 @@
 //General actions
-export const ACTION_TYPE_LOADING_ERROR       = "loadingError";
-export const ACTION_TYPE_LOADING_IN_PROGRESS = "loadingInProgress";
-export const ACTION_TYPE_LOADING_SUCCESS     = "loadingSuccess";
-export const ACTION_TYPE_SET_ARTICLE_DATE    = "articleDate";
+export const ACTION_TYPE_LOADING_ERROR        = "loadingError";
+export const ACTION_TYPE_LOADING_IN_PROGRESS  = "loadingInProgress";
+export const ACTION_TYPE_LOADING_SUCCESS      = "loadingSuccess";
+export const ACTION_TYPE_SET_ARTICLE_DATE     = "articleDate";
+export const ACTION_TYPE_SET_ARTICLE_QUANTITY = "articleQuantity";
 
 //Specific actions
 export const ACTION_TYPE_CLEAR_ARTICLES           = "clearArticles";

@@ -7,15 +7,31 @@ import { getTodayAsYYYYMMDD } from "../utils/dateFunctions";
 class Trending extends React.Component {
 
   handleOnChange=(e)=> {
-    this.props.setDate(e.target.value);
+    const {name,value} = e.target;
+
+    switch(name) {
+      case "date" : {
+        this.props.setDate(value);
+        break;
+      }  
+      case "quantity" : {
+        this.props.setQuantity(value);
+        break;
+      }  
+      default : {
+
+      }
+
+    }
+
   }
 
   refreshArticles() {
-    const {onGet,paramDate} = this.props;      
+    const {onGet,paramDate,paramQuantity} = this.props;      
     const newDate =  (paramDate === undefined || paramDate.toUpperCase()==="HOY") ? getTodayAsYYYYMMDD() : paramDate;
    
-    if (newDate!==undefined) {
-      onGet(newDate);
+    if (newDate!==undefined && paramQuantity!==undefined) {
+      onGet(newDate,paramQuantity);
     }
   }
 
@@ -30,30 +46,36 @@ class Trending extends React.Component {
   }
 
   render() {
-    const {isLoading,hasError,error,paramDate,articleDate,articles} = this.props;
+    const {isLoading,hasError,error,paramDate,paramQuantity,articleDate,articleQuantity,articles} = this.props;
   
-    const articleList = articles.map(article => {
+    const articleList = [] /*articles.map(article => {
       return (
         <li key={article.news_id}>
             <div>Category: {article.category}</div>
             <div>Title: {article.title}</div>
         </li>
       )
-    })
+    })*/
     
     return (
             
       <div>
           <h3>
-              Tendencias: [{paramDate}] - articleDate:[{articleDate}]
+              Tendencias: [{paramDate}] - articleDate:[{articleDate}] - paramQty [{paramQuantity}] articleQuantity [{articleQuantity}]
           </h3>
   
           <div>
             <input
+              name="date"
               value={articleDate} onChange={this.handleOnChange}
               type="date"
-            />           
-            <Link to={`/tendencias/${articleDate}`}>
+            />      
+            <input
+              name="quantity"
+              value={articleQuantity} onChange={this.handleOnChange}
+              type="number"
+            />                    
+            <Link to={`/tendencias/${articleDate}/${articleQuantity}`}>
               <button>
                 Refresh
               </button>        

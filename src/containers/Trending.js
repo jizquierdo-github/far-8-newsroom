@@ -2,11 +2,13 @@ import { connect } from 'react-redux'
 
 //Custom components
 import Trending from '../components/Trending'
-import {setArticleDate,getLatestArticles} from '../actions/actions'
+import {setArticleDate,setArticleQuantity,getTrendingArticles} from '../actions/actions'
 
 const mapStateToProps = (state,ownProps) => ({
   paramDate: ownProps.match.params.paramDate,
+  paramQuantity: ownProps.match.params.paramQty,
   articleDate : state.articleDate,
+  articleQuantity : state.articleQuantity,
   articles:  state.articles,
   hasError:  state.loadingError.hasError,
   error:     state.loadingError.error,
@@ -16,7 +18,8 @@ const mapStateToProps = (state,ownProps) => ({
 const mapDispatchToProps = (dispatch) => (
   {
     setDate : (newsDate) => dispatch(setArticleDate(newsDate)),
-    onGet: (newsDate) => dispatch(getLatestArticles(newsDate))
+    setQuantity : (quantity) => dispatch(setArticleQuantity(quantity)),
+    onGet: (newsDate,newsQuantity) => dispatch(getTrendingArticles(newsDate,newsQuantity))
   }
 )
 

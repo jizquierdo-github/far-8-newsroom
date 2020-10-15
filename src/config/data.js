@@ -8,7 +8,7 @@ export const categories = [
   },
   { 
     id: 100, 
-    name: "hoy", 
+    name: "hoy/5", 
     description: "Tendencias",
     linkTo: "/tendencias",
     includeId: true 

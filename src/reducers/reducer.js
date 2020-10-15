@@ -11,6 +11,8 @@ const INITIAL_LOADING_ERROR = {
 
 const INITIAL_DATE = getTodayAsYYYYMMDD();
 
+const INITIAL_QUANTITY = 5;
+
 //LoadingError Reducer
 const loadingError = (state = INITIAL_LOADING_ERROR, action) => {
     
@@ -41,6 +43,18 @@ const articleDate = (state = INITIAL_DATE, action) => {
   switch (action.type) {
     case actionTypes.ACTION_TYPE_SET_ARTICLE_DATE:
       return action.articleDate;
+
+    default:
+      return state;
+  }
+}
+
+//Quantity Reducer
+const articleQuantity = (state = INITIAL_QUANTITY, action) => {
+
+  switch (action.type) {
+    case actionTypes.ACTION_TYPE_SET_ARTICLE_QUANTITY:
+      return action.articleQuantity;
 
     default:
       return state;
@@ -80,5 +94,6 @@ export default combineReducers({
   loadingError,
   loadingInProgress,
   articleDate,
+  articleQuantity,
   articles
 })
