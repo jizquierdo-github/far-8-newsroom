@@ -15,7 +15,8 @@ const INITIAL_QUANTITY = 5;
 const INITIAL_ARTICLE_DATA = {
   articles: [],
   date: INITIAL_DATE,
-  quantity: INITIAL_QUANTITY
+  quantity: INITIAL_QUANTITY,
+  trendingData: {topics : [], news: {}}
 };
 
 //LoadingError Reducer
@@ -53,10 +54,18 @@ const articleData =  (state = INITIAL_ARTICLE_DATA, action) => {
       return {...state,quantity: action.articleQuantity}
 
     case actionTypes.ACTION_TYPE_CLEAR_ARTICLES:
-      return {...state,articles: []}
+      return {...state,
+              articles: [],
+              trendingData: {topics : [], 
+                             news: {}}}
 
     case actionTypes.ACTION_TYPE_LOADING_SUCCESS:
       return {...state,articles: action.articles}
+
+    case actionTypes.ACTION_TYPE_TRENDING_SUCCESS:
+      return {...state,
+              trendingData: {topics: action.payload.topics,
+                             news: action.payload.news}}
 
     case actionTypes.ACTION_TYPE_SEARCH_ARTICLES:
       return state;

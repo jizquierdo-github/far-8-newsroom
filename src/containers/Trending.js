@@ -9,7 +9,8 @@ const mapStateToProps = (state,ownProps) => ({
   paramQuantity: ownProps.match.params.paramQty,
   articleDate: state.articleData.date,
   articleQuantity: state.articleData.quantity,
-  articles:  state.articleData.articles,
+  topics: state.articleData.trendingData.topics,
+  articleGroups: state.articleData.trendingData.news, 
   hasError:  state.loadingError.hasError,
   error:     state.loadingError.error,
   isLoading: state.loadingInProgress

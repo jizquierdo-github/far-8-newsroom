@@ -20,6 +20,13 @@ export const loadingInProgress = bool => (
     }
 )
   
+export const trendingSuccess = (topics,news) => (
+  {
+    type: actionTypes.ACTION_TYPE_TRENDING_SUCCESS,
+    payload: {topics,news}
+  }
+) 
+
 export const loadingSuccess = (articles) => (
     {
       type: actionTypes.ACTION_TYPE_LOADING_SUCCESS,
@@ -147,10 +154,13 @@ export const getTrendingArticles =  (newsDate,newsQuantity) => {
         return response
       })
       .then((response) =>  response.json())
-      .then((articles) => {
-        console.log(articles)
+      .then((data) => {
+        console.log("Topics")
+        console.log(data.keywords)
+        console.log("News")
+        console.log(data.news)
         dispatch(loadingInProgress(false))
-        return  dispatch(loadingSuccess(articles))
+        return  dispatch(trendingSuccess(data.keywords,data.news))
       })
       .catch(error => dispatch(loadingError(true,error)))
   }

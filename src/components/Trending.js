@@ -6,6 +6,10 @@ import { getTodayAsYYYYMMDD } from "../utils/dateFunctions";
 
 class Trending extends React.Component {
 
+  state = {
+    selectedTopic : ""
+  }
+
   handleOnChange=(e)=> {
     const {name,value} = e.target;
 
@@ -39,23 +43,38 @@ class Trending extends React.Component {
     this.refreshArticles();
   }
 
-  componentDidUpdate(prevProps) {    
-    if (this.props.paramDate !== prevProps.paramDate) {
+  componentDidUpdate(prevProps) {
+    
+    if ((this.props.paramDate !== prevProps.paramDate) || (this.props.paramQuantity !== prevProps.paramQuantity)) {
       this.refreshArticles();
+    }
+    if (this.props.topics.length !== prevProps.topics.length) {
+      this.setState({selectedTopic: this.props.topics[0]})  
     }
   }
 
+  handleTopicSelection = (e) => {
+    this.setState({selectedTopic: e.target.value})
+  }
+
   render() {
-    const {isLoading,hasError,error,paramDate,paramQuantity,articleDate,articleQuantity,articles} = this.props;
+    const {isLoading,hasError,error,paramDate,paramQuantity,articleDate,articleQuantity,topics,articleGroups} = this.props;
   
-    const articleList = [] /*articles.map(article => {
+    const topicList = topics.map((topic,i) => {
+      return (
+          <option key={i} value={topic}>{`${topic} (${articleGroups[topic].length})`}</option>
+      )
+    })
+
+    const articles = articleGroups[this.state.selectedTopic]
+    const articleList = articles!==undefined ? articleGroups[this.state.selectedTopic].map(article => {
       return (
         <li key={article.news_id}>
             <div>Category: {article.category}</div>
             <div>Title: {article.title}</div>
         </li>
       )
-    })*/
+    }) : []
     
     return (
             
@@ -88,10 +107,17 @@ class Trending extends React.Component {
               {isLoading? "Loading" : ""}
           </div>
           <div>
-            {articles.length}
-            <ul>
-              {articleList}
-            </ul>
+            {topics.length}
+            <div>
+                <select onChange={this.handleTopicSelection} value={this.state.selectedTopic}>
+                   {topicList}
+                </select>
+            </div>
+            <div>
+              <ul>
+                {articleList}
+              </ul>
+            </div>
           </div>
           
       </div>
