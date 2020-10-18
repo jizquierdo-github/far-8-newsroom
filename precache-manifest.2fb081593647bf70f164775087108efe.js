@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "363a25204449341037919e2d130a6646",
+    "revision": "ab46443243736345d9d70bf0849525cc",
     "url": "/far-8-newsroom/index.html"
   },
   {
-    "revision": "7d2c3df4873d80d8f323",
+    "revision": "694dac137e578ea3c42f",
     "url": "/far-8-newsroom/static/css/main.15096a73.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/far-8-newsroom/static/js/2.9db06c08.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7d2c3df4873d80d8f323",
-    "url": "/far-8-newsroom/static/js/main.575383dd.chunk.js"
+    "revision": "694dac137e578ea3c42f",
+    "url": "/far-8-newsroom/static/js/main.06b6d8ee.chunk.js"
   },
   {
     "revision": "0d824e1d68bee58e18ce",

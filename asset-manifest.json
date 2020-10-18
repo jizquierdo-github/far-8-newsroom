@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/far-8-newsroom/static/css/main.15096a73.chunk.css",
-    "main.js": "/far-8-newsroom/static/js/main.575383dd.chunk.js",
-    "main.js.map": "/far-8-newsroom/static/js/main.575383dd.chunk.js.map",
+    "main.js": "/far-8-newsroom/static/js/main.06b6d8ee.chunk.js",
+    "main.js.map": "/far-8-newsroom/static/js/main.06b6d8ee.chunk.js.map",
     "runtime-main.js": "/far-8-newsroom/static/js/runtime-main.bfc2f5e0.js",
     "runtime-main.js.map": "/far-8-newsroom/static/js/runtime-main.bfc2f5e0.js.map",
     "static/js/2.9db06c08.chunk.js": "/far-8-newsroom/static/js/2.9db06c08.chunk.js",
     "static/js/2.9db06c08.chunk.js.map": "/far-8-newsroom/static/js/2.9db06c08.chunk.js.map",
     "index.html": "/far-8-newsroom/index.html",
-    "precache-manifest.d15e52b531ffe432e1eb9b6eb63074cb.js": "/far-8-newsroom/precache-manifest.d15e52b531ffe432e1eb9b6eb63074cb.js",
+    "precache-manifest.2fb081593647bf70f164775087108efe.js": "/far-8-newsroom/precache-manifest.2fb081593647bf70f164775087108efe.js",
     "service-worker.js": "/far-8-newsroom/service-worker.js",
     "static/css/main.15096a73.chunk.css.map": "/far-8-newsroom/static/css/main.15096a73.chunk.css.map",
     "static/js/2.9db06c08.chunk.js.LICENSE.txt": "/far-8-newsroom/static/js/2.9db06c08.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.bfc2f5e0.js",
     "static/js/2.9db06c08.chunk.js",
     "static/css/main.15096a73.chunk.css",
-    "static/js/main.575383dd.chunk.js"
+    "static/js/main.06b6d8ee.chunk.js"
   ]
 }
