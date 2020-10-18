@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 //Custom components
 import Latest   from "../containers/Latest";
@@ -13,10 +13,12 @@ class Main extends React.Component {
         
         return (
             <main className="main">
-                <Route exact path="/"                          component={Latest} />
-                <Route exact path="/ultimas/:paramDate"        component={Latest} />
-                <Route path="/tendencias/:paramDate/:paramQty" component={Trending} />
-                <Route path="/noticias/:categoryName"          component={Category} />
+                <Switch>
+                    <Route exact path="/"                          component={Latest} />
+                    <Route exact path="/ultimas/:paramDate"        component={Latest} />
+                    <Route path="/tendencias/:paramDate/:paramQty" component={Trending} />
+                    <Route path="/noticias/:categoryName"          component={Category} />
+                </Switch>
             </main>
         )
     }
