@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import Latest   from "../containers/Latest";
 import Trending from "../containers/Trending";
 import Category from "../containers/Category";
+import Search   from "../containers/Search";
 
 class Main extends React.Component {
 
@@ -18,6 +19,7 @@ class Main extends React.Component {
                     <Route exact path="/ultimas/:paramDate"        component={Latest} />
                     <Route path="/tendencias/:paramDate/:paramQty" component={Trending} />
                     <Route path="/noticias/:categoryName"          component={Category} />
+                    <Route path="/search/:text"                    component={Search} />
                 </Switch>
             </main>
         )

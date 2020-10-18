@@ -16,6 +16,7 @@ const INITIAL_ARTICLE_DATA = {
   articles: [],
   date: INITIAL_DATE,
   quantity: INITIAL_QUANTITY,
+  textToSearch : "",
   trendingData: {topics : [], news: {}}
 };
 
@@ -52,6 +53,9 @@ const articleData =  (state = INITIAL_ARTICLE_DATA, action) => {
 
     case actionTypes.ACTION_TYPE_SET_ARTICLE_QUANTITY:
       return {...state,quantity: action.articleQuantity}
+
+    case actionTypes.ACTION_TYPE_SET_TEXT_TO_SEARCH:
+      return {...state,textToSearch: action.textToSearch}
 
     case actionTypes.ACTION_TYPE_CLEAR_ARTICLES:
       return {...state,

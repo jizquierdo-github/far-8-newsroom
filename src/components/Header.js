@@ -1,10 +1,20 @@
 import React from "react";
 
 //Custom components
-import Search from "../components/Search";
+import SearchForm from "../containers/SearchForm";
 import Menu from "../components/Menu";
 
 class Header extends React.Component {
+
+  state = {
+    searchText : ""
+  }
+
+  handleOnChange=(e)=> {
+    const {value} = e.target;
+
+    this.setState({searchText: value})
+  }
 
   render() {
     
@@ -14,7 +24,7 @@ class Header extends React.Component {
         <div>
             News Form
         </div>
-        <Search/>
+        <SearchForm/>
         <Menu/>      
       </header>
     );

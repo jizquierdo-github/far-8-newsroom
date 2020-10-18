@@ -48,6 +48,13 @@ export const setArticleQuantity = quantity =>  (
   }
 )
 
+export const setTextToSearch = text =>  (
+  {
+    type: actionTypes.ACTION_TYPE_SET_TEXT_TO_SEARCH,
+    textToSearch : text
+  }
+)
+
 
 //Specific actions
 export const clearArticles = () => (
@@ -56,11 +63,6 @@ export const clearArticles = () => (
   }
 )
 
-export const searchArticles = () => (
-    {
-      type: actionTypes.ACTION_TYPE_SEARCH_ARTICLES //SPIDER: completar
-    }
-)
 
 export const getArticlesByCategory = (categoryId) => {
 
@@ -166,5 +168,38 @@ export const getTrendingArticles =  (newsDate,newsQuantity) => {
   }
 }
 
+export const searchArticles = (textToSearch) => {
+
+  return dispatch => {
+
+    const url = `${endpoints.BASE_URL}${endpoints.ENDPOINT_SEARCH}${textToSearch}`;
+    console.log("Url search: [" + url + "]")
+
+    dispatch(clearArticles())
+
+    dispatch(loadingError(false))
+
+    dispatch(loadingInProgress(true))
+
+   // dispatch(setTextToSearch(textToSearch))
+
+    fetch(url)
+      .then((response) => {
+
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+       
+        return response
+      })
+      .then((response) =>  response.json())
+      .then((articles) => {
+        console.log(articles)
+        dispatch(loadingInProgress(false))
+        return  dispatch(loadingSuccess(articles))
+      })
+      .catch(error => dispatch(loadingError(true,error)))
+  }
+}
 
 
